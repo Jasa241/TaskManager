@@ -1,0 +1,12 @@
+﻿.Main {
+    display: grid;
+    grid-template-columns: minmax(300px, auto) 4fr;
+    grid-template-rows: 100vh 100vh;
+    grid-gap: 12px;
+}
+    .Main .Container {
+        height:100%;
+    }
+    .Main .Tasks {
+        grid-column: 2/-1;
+    }

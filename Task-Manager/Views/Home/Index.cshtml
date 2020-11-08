@@ -1,0 +1,38 @@
+﻿@model List<Task_Manager.Models.Task>
+@using Task_Manager.Helpers;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="~/Content/Style.css" />
+    <link rel="stylesheet" href="~/Content/Grid.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="Main">
+        <div class="Container">
+            @using (Html.BeginForm("Create", "Home", FormMethod.Post))
+            {
+                <div class="Container_Inputs">
+                    @Html.TextBox("Tittle", null, new { placeholder = "Tittle", @class = "Inputs" })
+                    @Html.TextArea("Content", new { placeholder = "Content", @class = "Inputs", @id = "TextArea" })
+                    <input type="submit" value="Create Task" class="Inputs" />
+                </div>
+            }
+        </div>
+        <div class="Tasks">
+
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    @Html.Card(item.Tittle, item.Content, 
+                    Html.ImageActionLink("Delete", "Delete", "Home", new { item.Tittle, item.Content }, null, "~/Images/Trash.png"),
+                    Html.ImageActionLink("Edit", "Edit", "Home", new { item.Tittle, item.Content }, null, "~/Images/Pencil.png"))
+                }
+            }
+
+        </div>
+    </div>
+</body>
+</html>
